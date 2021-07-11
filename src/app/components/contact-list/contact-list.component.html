@@ -5,20 +5,31 @@
             <i class="contact-btn-add fas fa-plus fa-2x"></i>
         </a>
     </div>
-    <ul class="list-group">
-        <li *ngFor="let contact of contacts" class="list-group-item">
-            {{ contact.firstname }} {{ contact.lastname }}
-            <button (click)="openModal(contact.id, template)" type="button" class="btn btn-danger btn-sm float-right"><i class="fas fa-trash"></i></button>
-            <button routerLink="/contacts/view/{{contact.id}}" type="button" class="float-right mr-1 btn btn-sm btn-success"><i class="fas fa-edit"></i></button>
 
-
-        </li>
-    </ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th class="text-right">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let contact of contacts">
+                <td>
+                    <a class="d-block" routerLink="/contacts/view/{{contact.id}}" href="#">{{ contact.firstname }} {{ contact.lastname }}</a>
+                </td>
+                <td class="text-right">
+                    <button routerLink="/contacts/edit/{{contact.id}}" type="button" class="mr-1 btn btn-sm btn-success"><i class="fas fa-edit"></i></button>
+                    <button (click)="openModal(contact.id, template)" type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <ng-template #template>
     <div class="modal-header">
-        <h4 class="modal-title pull-left">Modal</h4>
+        <h4 class="modal-title pull-left">Delete Contact</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -27,7 +38,7 @@
         Are you sure you want to delete this contact?
     </div>
     <div class="modal-footer">
-        <button type="button" (click)="removeContact()" class="btn btn-primary">Save changes</button>
+        <button type="button" (click)="removeContact()" class="btn btn-danger">Delete</button>
         <button type="button" class="btn btn-secondary" aria-label="Close" (click)="modalRef.hide()">Close</button>
     </div>
 

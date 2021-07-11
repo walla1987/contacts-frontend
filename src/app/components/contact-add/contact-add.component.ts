@@ -54,6 +54,7 @@ export class ContactAddComponent implements OnInit {
   getContactTypes() {
     this.contactService.getTypes()
     .subscribe(types => {
+      console.log(types)
       this.contactTypes = types
     })
   }

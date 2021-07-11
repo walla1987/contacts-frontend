@@ -48,4 +48,10 @@ export class ContactsService extends BaseService {
     );
   }
 
+  getContact(contactId: number): Observable<any> {
+    return this.http.get(CONFIG.base_url + `contacts/${contactId}`).pipe(
+      catchError(this.handleError)
+    )
+  }
+
 }

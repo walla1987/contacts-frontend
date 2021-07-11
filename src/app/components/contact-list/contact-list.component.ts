@@ -41,12 +41,12 @@ export class ContactListComponent implements OnInit {
 
   removeContact() {
     this.contactService
-    .delete(this.contactId)
-    .subscribe(()=> {
-      this.modalRef.hide();
-      const index = this.contacts.findIndex(x => x.id === this.contactId)
-      this.contacts.splice(index,1);
-    })
+      .delete(this.contactId)
+      .subscribe(() => {
+        this.modalRef.hide();
+        const index = this.contacts.findIndex(x => x.id === this.contactId)
+        this.contacts.splice(index, 1);
+      })
   }
 
 }

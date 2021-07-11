@@ -7,6 +7,7 @@ import { ContactViewComponent } from '../components/contact-view/contact-view.co
 import { ReactiveFormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ContactEditComponent } from '../components/contact-edit/contact-edit.component';
 
 
 
@@ -14,7 +15,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
   declarations: [
     ContactAddComponent,
     ContactListComponent,
-    ContactViewComponent
+    ContactViewComponent,
+    ContactEditComponent
   ],
   imports: [
     CommonModule,

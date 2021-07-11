@@ -1,0 +1,58 @@
+<div class="container">
+
+    <h1 class="text-center display-6">Edit Contact</h1>
+    <form [formGroup]="contactForm" (submit)="updateContact()">
+        <div class="form-group">
+            <label for="firstname">Firstname</label>
+            <input formControlName="firstname" type="text" [ngClass]="firstname.invalid && (firstname.dirty || firstname.touched) ? 'is-invalid' : ''" class="form-control">
+
+            <div class="invalid-feedback" *ngIf="firstname.errors?.required">
+                Firstname is required.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="lastname">Lastname</label>
+            <input formControlName="lastname" [ngClass]="lastname.invalid && (lastname.dirty || lastname.touched) ? 'is-invalid' : ''" type="text" class="form-control">
+            <div class="invalid-feedback" *ngIf="lastname.errors?.required">
+                Lastname is required.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">Date of Birth</label>
+            <input [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" bsDatepicker formControlName="dob" [ngClass]="dob.invalid && (dob.dirty || dob.touched) ? 'is-invalid' : ''" type="text" class="form-control">
+            <div class="invalid-feedback" *ngIf="dob.errors?.required">
+                Date of birth is required.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" formControlName="email" [ngClass]="email.invalid && (email.dirty || email.touched) ? 'is-invalid' : ''" class="form-control">
+            <div class="invalid-feedback" *ngIf="email.errors?.required">
+                Email is required.
+            </div>
+            <div class="invalid-feedback" *ngIf="email.errors?.email">
+                Email is invalid.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="telephone">Telephone</label>
+            <input formControlName="telephone" [ngClass]="telephone.invalid && (telephone.dirty || telephone.touched) ? 'is-invalid' : ''" type="text" class="form-control">
+            <div class="invalid-feedback" *ngIf="telephone.errors?.required">
+                Telephone number is required.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="contact_type">Contact Type</label>
+            <select formControlName="contact_type_id" name="" class="form-control" id="">
+                <option selected disabled value="">Select contact type</option>
+                <option *ngFor="let contactType of contactTypes" [value]="contactType.id">{{ contactType.title }}</option>
+            </select>
+        </div>
+        <button type="submit" [disabled]="!contactForm.valid" class="btn btn-primary">Save</button>
+    </form>
+</div>
