@@ -6,6 +6,7 @@ import { ContactListComponent } from '../components/contact-list/contact-list.co
 import { ContactViewComponent } from '../components/contact-view/contact-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 
@@ -19,7 +20,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    ModalModule.forRoot()
   ]
 })
 export class ContactModule { }
