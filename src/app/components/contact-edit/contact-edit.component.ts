@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ContactsService } from 'src/app/services/contacts.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class ContactEditComponent implements OnInit {
     private fb: FormBuilder,
     private contactService: ContactsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) { }
 
   get firstname() { return this.contactForm.get('firstname') }
@@ -82,7 +84,9 @@ export class ContactEditComponent implements OnInit {
     this.contactService
       .update(this.contactId, this.contactForm)
       .subscribe(() => {
-        this.router.navigate(['contacts']);
+        this.router.navigate(['contacts']).then(() => {
+          this.toastrService.success("Contact has been updated.");
+        });
       })
   }
 

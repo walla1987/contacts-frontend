@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ContactsService } from 'src/app/services/contacts.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-contact-list',
@@ -18,7 +19,8 @@ export class ContactListComponent implements OnInit {
 
   constructor(
     private contactService: ContactsService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -46,6 +48,7 @@ export class ContactListComponent implements OnInit {
         this.modalRef.hide();
         const index = this.contacts.findIndex(x => x.id === this.contactId)
         this.contacts.splice(index, 1);
+        this.toastrService.success("Contact successfully deleted.")
       })
   }
 

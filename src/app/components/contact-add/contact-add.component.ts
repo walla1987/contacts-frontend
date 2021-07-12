@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ContactsService } from 'src/app/services/contacts.service';
 
 @Component({
@@ -15,7 +17,9 @@ export class ContactAddComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private contactService: ContactsService
+    private contactService: ContactsService,
+    private router: Router,
+    private toastrService: ToastrService
   ) {
     this.contactForm = this.fb.group({
       firstname: ['', Validators.required],
@@ -45,6 +49,9 @@ export class ContactAddComponent implements OnInit {
     this.contactService
       .create(this.contactForm)
       .subscribe((response) => {
+        this.router.navigate(['contacts']).then(() => {
+          this.toastrService.success("New contact has been added.")
+        })
         this.contactForm.reset();
       }, error => {
         console.error(error)
@@ -53,10 +60,9 @@ export class ContactAddComponent implements OnInit {
 
   getContactTypes() {
     this.contactService.getTypes()
-    .subscribe(types => {
-      console.log(types)
-      this.contactTypes = types
-    })
+      .subscribe(types => {
+        this.contactTypes = types
+      })
   }
 
 }
